@@ -54,10 +54,11 @@ class _HomePageState extends State<HomePage> {
 
                   return Card(
                     child: Container(
+                      alignment: Alignment.center,
                       child: Image.network(dataList[index]["url"],fit: BoxFit.fitHeight,),
                     ),
                   );
-                },childCount: dataList.length))
+                },childCount: 1))
           ],
         ));
   }
