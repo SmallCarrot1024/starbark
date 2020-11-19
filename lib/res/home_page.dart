@@ -10,23 +10,23 @@ class _HomePageState extends State<HomePage> {
   List<Map> dataList = [
     {
       "url":
-      "https://www-static.chinacdn.starbucks.com.cn/prod/images/pages/tmall-2020-06-29-zh.jpg"
+          "https://www-static.chinacdn.starbucks.com.cn/prod/images/pages/tmall-2020-06-29-zh.jpg"
     },
     {
       "url":
-      "https://www-static.chinacdn.starbucks.com.cn/prod/images/pages/starbucks-design-studio-web-china.jpg"
+          "https://www-static.chinacdn.starbucks.com.cn/prod/images/pages/starbucks-design-studio-web-china.jpg"
     },
     {
       "url":
-      "https://www-static.chinacdn.starbucks.com.cn/prod/images/pages/homepage-career-cn.jpg"
+          "https://www-static.chinacdn.starbucks.com.cn/prod/images/pages/homepage-career-cn.jpg"
     },
     {
       "url":
-      "https://www-static.chinacdn.starbucks.com.cn/prod/assets/images/featured/20201103/4.jpg"
+          "https://www-static.chinacdn.starbucks.com.cn/prod/assets/images/featured/20201103/4.jpg"
     },
     {
       "url":
-      "https://www-static.chinacdn.starbucks.com.cn/prod/assets/images/featured/20201103/4.jpg"
+          "https://www-static.chinacdn.starbucks.com.cn/prod/assets/images/featured/20201103/4.jpg"
     },
   ];
 
@@ -42,43 +42,66 @@ class _HomePageState extends State<HomePage> {
               pinned: true,
               expandedHeight: 200,
               flexibleSpace: FlexibleSpaceBar(
-                  title: Text('星巴克中国',style: TextStyle(
-                      color: Colors.white
-                  ),),
-                  background:bannerView()),
+                  title: Text(
+                    '星巴克中国',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                  background: bannerView()),
             ),
             SliverFixedExtentList(
                 itemExtent: 200,
-                delegate:
-                SliverChildBuilderDelegate((BuildContext context, int index) {
-
+                delegate: SliverChildBuilderDelegate(
+                    (BuildContext context, int index) {
                   return Card(
                     child: Container(
-                      alignment: Alignment.center,
-                      child: Image.network(dataList[index]["url"],fit: BoxFit.fitHeight,),
+                      child: Stack(
+
+                        children: <Widget>[
+
+                        ],
+                      ),
                     ),
                   );
-                },childCount: 1))
+                }, childCount: 1))
           ],
         ));
   }
 
-  Widget bannerView(){
+  Widget bannerView() {
     return Container(
       width: double.infinity,
       child: AspectRatio(
-        aspectRatio: 16/9,
+        aspectRatio: 16 / 9,
         child: Swiper(
-          itemBuilder: (BuildContext context,int index){
-            return Image.network(this.dataList[index]["url"],fit: BoxFit.fitHeight,);
+          itemBuilder: (BuildContext context, int index) {
+            return Image.network(
+              this.dataList[index]["url"],
+              fit: BoxFit.fitHeight,
+            );
           },
           itemCount: dataList.length,
-          pagination: SwiperPagination(
-              builder: SwiperPagination.dots
-          ),
+          pagination: SwiperPagination(builder: SwiperPagination.dots),
           autoplay: true,
         ),
       ),
+    );
+  }
+
+  Widget customShapeView(value) {
+    return RaisedButton(
+
+      child: Text(value),
+      clipBehavior: Clip.hardEdge,
+      textColor: Colors.white,
+      color: Colors.orange,
+      padding: const EdgeInsets.all(0),
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(24),
+              topRight: Radius.circular(20),
+              bottomLeft: Radius.circular(0),
+              bottomRight: Radius.circular(20))),
+      onPressed: () {},
     );
   }
 }
