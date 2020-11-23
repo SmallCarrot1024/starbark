@@ -39,6 +39,8 @@ dev_dependencies:
     sdk: flutter
 
   logger_flutter: ^0.7.1
+  webview_flutter: ^1.0.7
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -57,6 +59,8 @@ flutter:
     - images/rider.png
     - images/notice.png
     - images/arrow_right_gray.png
+    - images/shop.png
+    - images/coffee.png
 
   # To add assets to your application, add an assets section, like this:
 

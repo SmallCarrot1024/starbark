@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:flutter/services.dart';
+import 'route/route.dart';
 
 import 'TabPage.dart';
 
@@ -13,6 +14,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      initialRoute: '/',
+      onGenerateRoute: onGenerateRoute,
       theme: ThemeData(primaryColor: Color(0xFF00A862)),
       // theme: ThemeData(
       //   primaryColor: Color(0x00A862),
