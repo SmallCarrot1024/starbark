@@ -1,10 +1,13 @@
 
 import 'package:flutter/material.dart';
 import 'package:starbark/base_webview_page.dart';
+import 'package:starbark/wallet/wallet_home_page.dart';
 
 final routes = {
   '/webview_page': (context, {arguments}) =>
       BaseWebViewPage(arguments: arguments),
+  '/wallet_page': (context) =>
+      WalletHomePage(),
 
 };
 

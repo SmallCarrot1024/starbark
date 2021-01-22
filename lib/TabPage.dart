@@ -24,9 +24,9 @@ class _TabsState extends State<TabPage> {
   List _pageList = [
     HomePage(),
     CartPage(),
-    MinePage(),
     VipPage(),
   MessagePage(),
+    MinePage(),
   ];
 
   var _pageController = PageController(initialPage: 0);
@@ -34,35 +34,36 @@ class _TabsState extends State<TabPage> {
 
   @override
   Widget build(BuildContext context) {
-    return  myNavigationBar(context);
-    // return Scaffold(
-    //
-    //   // floatingActionButton: Container(
-    //   //   padding: EdgeInsets.all(5),
-    //   //   height: 70,
-    //   //   width: 70,
-    //   //   margin: EdgeInsets.only(top: 10),
-    //   //   decoration: BoxDecoration(
-    //   //     borderRadius: BorderRadius.circular(60),
-    //   //     color: Colors.white,
-    //   //   ),
-    //   //
-    //   //   child: FloatingActionButton(
-    //   //     child: Icon(Icons.add),
-    //   //     onPressed: () {
-    //   //       setState(() { //改变状态
-    //   //         // this._currentIndex = 1;
-    //   //       });
-    //   //     },
-    //   //     backgroundColor: this._currentIndex == 1 ? Color(0xFF00A862) : Color(0xFF00A862),
-    //   //   ),
-    //   // ),
-    //   // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-    //   // body: this._pageList[this._currentIndex],
-    //   bottomNavigationBar:
-    //   myNavigationBar(context)
-    //   // customNavigationBar()
-    // );
+    // return
+    //   // myNavigationBar(context);
+    return Scaffold(
+
+      floatingActionButton: Container(
+        padding: EdgeInsets.all(5),
+        height: 70,
+        width: 70,
+        margin: EdgeInsets.only(top: 10),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(60),
+          color: Colors.white,
+        ),
+
+        child: FloatingActionButton(
+          child: Icon(Icons.add),
+          onPressed: () {
+            setState(() { //改变状态
+              // this._currentIndex = 1;
+            });
+          },
+          backgroundColor: this._currentIndex == 1 ? Color(0xFF00A862) : Color(0xFF00A862),
+        ),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      body: this._pageList[this._currentIndex],
+      bottomNavigationBar:
+      // myNavigationBar(context)
+      customNavigationBar()
+    );
   }
 
   Widget customNavigationBar() {

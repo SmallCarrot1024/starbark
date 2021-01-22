@@ -5,6 +5,8 @@ import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 import 'package:starbark/route/route.dart';
 import 'package:starbark/widget/star_widget.dart';
+import 'package:starbark/res/data.dart';
+import '../utils/log_util.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -12,29 +14,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  List<Map> dataList = [
-    {
-      "url":
-          "https://www-static.chinacdn.starbucks.com.cn/prod/assets/images/featured/20201103/4.jpg",
-      "h5": "https://www.starbucks.com.cn/account/starbucks-rewards"
-    },
-    {
-      "url":
-          "https://www-static.chinacdn.starbucks.com.cn/prod/assets/images/featured/20201103/3.jpg",
-      "h5": "https://www.starbucks.com.cn/about/careers/"
-    },
-    {
-      "url":
-          "https://artwork.starbucks.com.cn/banners-homepage-banner/main_61babe13-d569-476b-8bd6-e75068943318.jpg",
-      "h5": "https://starbucks.tmall.com/"
-    },
-    {
-      "url":
-          "https://artwork.starbucks.com.cn/banners-homepage-banner/main_e40ff86c-7063-4f6a-8155-b8290e1aba64.jpg",
-      "h5": "https://www.starbucks.com.cn/account/starbucks-rewards"
-    },
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -42,11 +21,19 @@ class _HomePageState extends State<HomePage> {
         child: CustomScrollView(
           slivers: <Widget>[
             SliverAppBar(
+
               leading: Icon(Icons.arrow_back),
-              centerTitle: true,
               pinned: true,
-              expandedHeight: 200,
-              flexibleSpace: FlexibleSpaceBar(background: bannerView()),
+              expandedHeight: 120,
+              floating: true,
+              flexibleSpace: FlexibleSpaceBar(
+                  title: Text(
+                    '星巴克中国',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                collapseMode: CollapseMode.pin,
+                  // background: bannerView()
+              ),
             ),
             SliverList(
                 delegate: SliverChildBuilderDelegate(
@@ -58,11 +45,11 @@ class _HomePageState extends State<HomePage> {
                   margin: EdgeInsets.all(8),
                   child: Column(
                     children: <Widget>[
-                      starTitle(),
+                      this.starTitle(),
                       SizedBox(
                         height: 8,
                       ),
-                      marqueeView(), //跑马灯
+                      this.marqueeView(), //跑马灯
                       SizedBox(
                         height: 10,
                       ),
@@ -70,7 +57,6 @@ class _HomePageState extends State<HomePage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: <Widget>[
                           cardItemView('啡快', '在线点到店取', '下单返券'),
-
                           Expanded(
                             child: cardItemView('专星送', '点单送好礼券', '满80免配'),
                           )
@@ -112,7 +98,7 @@ class _HomePageState extends State<HomePage> {
         child: Swiper(
           itemBuilder: (BuildContext context, int index) {
             return Image.network(
-              this.dataList[index]["url"],
+              dataList[index]["url"],
               fit: BoxFit.fitHeight,
             );
           },
@@ -148,7 +134,9 @@ class _HomePageState extends State<HomePage> {
                 topRight: Radius.circular(topRight),
                 bottomLeft: Radius.circular(bottomLeft),
                 bottomRight: Radius.circular(bottomRight))),
-        onPressed: () {},
+        onPressed: () {
+          LogUtil.d("homepage", "封装的对不对");
+        },
       ),
     );
   }
@@ -253,23 +241,21 @@ class _HomePageState extends State<HomePage> {
                             children: [
                               IconButton(
                                 icon: Icon(Icons.close),
-
-                                onPressed: (){
+                                onPressed: () {
                                   Navigator.pop(context);
                                 },
                               ),
-                               Expanded(child: Center(
-                                 child:  Text("今天点些什么呢",textAlign: TextAlign.center),
-                               ))
-
-
+                              Expanded(
+                                  child: Center(
+                                child: Text("今天点些什么呢",
+                                    textAlign: TextAlign.center),
+                              ))
                             ],
                           ),
                           ListTile(
                             leading: Image.asset(
                               "images/coffee.png",
                               fit: BoxFit.cover,
-
                             ),
                             title: Text('啡快'),
                             subtitle:
