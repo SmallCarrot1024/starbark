@@ -18,7 +18,7 @@ class DataManager {
   //当实现构造函数但是不想每次都创建该类的一个实例的时候使用
   factory DataManager() => _singleton;
 
-  Future<UserQueryEntity> getUserInfo(
+  Future<String> getUserInfo(
       Map queryMap, BuildContext context) async {
       Map data = await httpManager.post(Api.CHECK_ACTIVITY,
         queryParameters: queryMap,

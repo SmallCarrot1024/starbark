@@ -23,8 +23,8 @@ class AESUtil {
   ///拿到用户输入的json数据 ，对json数据进行AES256加密 得到body值
   ///body + "&" + md5Key 进行MD5加密 得到sign值
   ///把code sign body 拼接成json字符串 返回给用户
-  static Map walletEncode(String json) {
-    String body = FlutterAesEcbPkcs5.encryptString(json, AES_KEY) as String;
+  static  Future<Map> walletEncode(String json) async {
+    String body = await FlutterAesEcbPkcs5.encryptString(json, AES_KEY);
 
     String sign = body + "&" + MD5KEY_DEV;
 
@@ -37,11 +37,11 @@ class AESUtil {
     return queryParameters;
   }
 
- static String walletDecode(String result, sign){
+ static Future<String> walletDecode(String result, sign) async{
    String tempSign = md5.convert(utf8.encode(result + "&" + MD5KEY_DEV)).toString().toUpperCase();
    if(!StringUtils.isNullOrEmpty(tempSign) && tempSign == sign){
      //解密
-     var decryptString = FlutterAesEcbPkcs5.decryptString(sign, AES_KEY) as String;
+     var decryptString =  await FlutterAesEcbPkcs5.decryptString(sign, AES_KEY);
 
      return decryptString;
    }
